@@ -161,10 +161,18 @@ class TestPetEndpoints:
 
         # Пытаемся получить питомца с несуществующим ID
         nonexistent_id = 999999999
+        # Удаляем питомца на всякий случай
+        api_response = api_client.delete(f"/pet/{nonexistent_id}")
+        # Запрашиваем питомца, коотрого мы только-что удалили
         response = api_client.get(f"/pet/{nonexistent_id}")
 
         # Проверяем, что получаем ошибку 404
-        assert response.status_code == 404, f"Ожидался статус 404, получен {response.status_code}"
+        exp_response = {"status_code" : 404, "type": "error", "message":"Pet not found"}
+        assert response.status_code == exp_response["status_code"], f"Ожидался статус {exp_response["status_code"]}, получен {response.status_code}"
+        # Проверка данных
+        response_data = response.json()
+        assert response_data["type"] == exp_response["type"], f"Ожидался type {exp_response["type"]}, получен {response_data["type"]}"
+        assert response_data["message"] == exp_response["message"], f"Ожидался message '{exp_response["message"]}', получен {response_data["message"]}"
         print("✓ Статус код 404 для несуществующего питомца - OK")
 
         response_data = response.json()
@@ -173,16 +181,74 @@ class TestPetEndpoints:
 
         print("✅ Тест получения несуществующего питомца пройден успешно")
 
+        ###############################################################################################
+        # Тест для обновления информации несуществующего питомце (PUT /pet)
+        # Тип: негативный
+        # Шаги:
+        # 1. Удаляем питомца с большим id на всякий случай
+        # 1. Обновляем данные несуществующего питомца PUT
+        # 2. Проверяем, что вернулась ошибка 400 или 404
+        ###############################################################################################
+    @pytest.mark.negative
+    def test_update_nonexistence_pet(self, api_client, pet_data):
+        print("\n=== Тест обновления несуществующего питомца ===")
+        nonexistent_id = 999999999
+
+        # Удаляем питомца на всякий случай
+        api_client.delete(f"/pet/{nonexistent_id}")
+
+        # Шаг 2: Обновление питомца которого только-что удалили
+        pet_data['id'] = nonexistent_id
+        response = api_client.put("/pet", pet_data)
+        print(response)
+        # Проверка статус кода
+        assert response.status_code in [400, 404, 405], f"Ожидался статус 400, 404, 405получен {response.status_code}"
+        print("✓ Статус код [400, 404, 405] - OK")
+
+        print("✓ Данные питомца не обновлены")
+        print("✅ Тест обновления питомца пройден успешно")
+
+    ###############################################################################################
+    # Тест для удаления несуществующего питомца (DELETE /pet/{petId})
+    # Тип: егативный
+    # Шаги:
+    # 1. Удаляем питомца с большим Id на всякий случай
+    # 2. Пытаемся удалить питомца с этим Id еще раз
+    # 3. Проверяем, что возвращается [400, 404]
+    ###############################################################################################
+    @pytest.mark.negative
+    def test_delete_nonexistent_pet(self, api_client, pet_data):
+        print("\n=== Тест удаления несуществующего питомца ===")
+
+
+        nonexistent_id = 999999999
+
+        # Шаг 1: Удаляем питомца с болшим Id
+        api_client.delete(f"/pet/{nonexistent_id}")
+        time.sleep(0.1) # Задержка на всякий случай
+        #  2. Пытаемся удалить питомца с этим Id еще раз
+        delete_response = api_client.delete(f"/pet/{nonexistent_id}")
+
+        # 3. Проверяем, что возвращается [400, 404]
+        assert delete_response.status_code in [400, 404], f"Ожидался статус [400, 404], получен {delete_response.status_code}"
+        print(f"✓ Статус код {delete_response.status_code} при удалении - OK")
+
+        print("✅ Тест удаления несуществующего питомца пройден успешно")
+
     ###############################################################################################
     # Тест для проверки получения несуществующего питомца, с использованием параметризации
     # Тип: негативный
     # Шаги:
-    # 1. Пытаемся получить питомца с несуществующим id
-    # 2. Проверяем, что статус-код ответа 404
+    # 1. Пытаемся получить питомца с id==0
+    # 2. Пытаемся получить питомца с id==-1
+    # 3. Пытаемся получить питомца с id=="invalid_string"
+    # 4. Пытаемся получить питомца с id==""
+    # 5. Пытаемся получить питомца с id==None
+    # 6. Пытаемся получить питомца с id==999999999999999
+    # Каждый раз анализируем код возврата
     ###############################################################################################
     @pytest.mark.negative
     @pytest.mark.parametrize("invalid_id, expected_status", [
-        (999999, [404]),  # несуществующий числовой ID
         (0, [404]),  # нулевой ID
         (-1, [404]),  # отрицательный ID
         ("invalid_string", [400, 404]),  # строка вместо числа
@@ -195,7 +261,10 @@ class TestPetEndpoints:
         assert response.status_code in expected_status
 
     ###############################################################################################
-    #   Тесты создания питомца с некорректными данными
+    # Тест для проверки создания питомца, с неправильными параметрами
+    # Тип: негативный
+    # Шаги:
+    # 1. Пытаемся создать питомца с id=="invalid_id"
     ###############################################################################################
     @pytest.mark.negative
     def test_create_pet_invalid_id_as_string(self, api_client):
@@ -230,17 +299,8 @@ class TestPetEndpoints:
         response = api_client.post("/pet", pet_data)
 
         # Шаг 2: Проверка статус кода
-        assert response.status_code == 200, f"Ожидался статус 200, получен {response.status_code}"
-        print("✓ Статус код 200 - OK")
-
-        # Шаг 3: Проверка данных ответа
-        response_data = response.json()
-        assert response_data["id"] == pet_data["id"], "ID питомца не совпадает"
-        assert response_data["name"] == pet_data["name"], "Имя питомца не совпадает"
-        assert response_data["status"] == pet_data["status"], "Статус питомца не совпадает"
-        print("✓ Данные питомца корректны")
-        print("✅ Тест создания питомца пройден успешно")
-        #return response_data["id"]
+        assert response.status_code in [405], f"Ожидался статус 405, получен {response.status_code}"
+        print("✓ Статус код 405 - OK")
         return None
 
 ####################################################################################################
