@@ -7,6 +7,9 @@ import pytest
 import sys
 import os
 
+from translate_to_ru_v3 import process_html_file
+
+
 # Основная функция для запуска тестов
 def main():
 
@@ -34,6 +37,13 @@ def main():
         print(f"\n❌ Некоторые тесты не прошли. Код выхода: {exit_code}")
 
     print("\n📊 Отчет сохранен в файле: test_report.html")
+
+    input_file = "test_report.html"
+
+    if not os.path.exists(input_file):
+        print(f"Файл {input_file} не найден")
+        sys.exit(1)
+    process_html_file(input_file)
 
     return exit_code
 
