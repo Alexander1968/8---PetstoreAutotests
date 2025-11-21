@@ -43,6 +43,7 @@ def main():
     if not os.path.exists(input_file):
         print(f"Файл {input_file} не найден")
         sys.exit(1)
+
     process_html_file(input_file)
 
     return exit_code

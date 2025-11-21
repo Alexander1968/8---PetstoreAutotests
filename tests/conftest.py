@@ -1,6 +1,10 @@
 import pytest
 from utils.api_client import PetStoreAPI
-from py.xml import html
+
+# Глобальные идентификаторы
+ID = 777777
+CATEGORY_ID = 777
+CATEGORY_NAME = "crocodiles"
 
 @pytest.fixture
 def api_client():
@@ -11,12 +15,12 @@ def api_client():
 @pytest.fixture
 def pet_data():
     return {
-        "id": 12345,
+        "id": ID,
         "category": {
-            "id": 1,
-            "name": "dogs"
+            "id": CATEGORY_ID,
+            "name": CATEGORY_NAME,
         },
-        "name": "Rex",
+        "name": "Raptor Rex",
         "photoUrls": [
             "string"
         ],
@@ -29,17 +33,18 @@ def pet_data():
         "status": "available"
     }
 
+
 # Фикстура с обновленными данными питомца
 @pytest.fixture
 def updated_pet_data():
 
     return {
-        "id": 12345,
+        "id": ID,
         "category": {
-            "id": 1,
-            "name": "dogs"
+            "id": CATEGORY_ID,
+            "name": CATEGORY_NAME,
         },
-        "name": "Rex Updated",
+        "name": "Raptor Rex Updated",
         "photoUrls": [
             "string_updated"
         ],
