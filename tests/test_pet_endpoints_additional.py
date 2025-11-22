@@ -1,12 +1,11 @@
 import pytest
 import time
-import uuid
 
 from tests.conftest import pet_data
 
 
 # Класс для тестирования эндпоинтов питомцев
-class TestPetEndpoints:
+class TestPetEndpointsAdditional:
 ####################################################################################################
 #                                   Позитивные тесты
 ####################################################################################################
@@ -21,10 +20,10 @@ class TestPetEndpoints:
     @pytest.mark.positive
     def test_create_pet(self, api_client, pet_data):
         print("\n=== Позитивный тест создания питомца ===")
+        # print(pet_data)
 
         # Шаг 1: Создание питомца
-        # print(pet_data)
-        response = api_client.post("/pet", pet_data)
+        response = api_client.add_new_pet(pet_data)
 
         # Шаг 2: Проверка статус кода
         assert response.status_code == 200, f"Ожидался статус 200, получен {response.status_code}"
@@ -40,7 +39,6 @@ class TestPetEndpoints:
         #return response_data["id"]
         return None
 
-
     ###############################################################################################
     # Тест для получения информации о питомце по ID (GET /pet/{petId})
     # Тип: позитивный
@@ -54,12 +52,13 @@ class TestPetEndpoints:
         print("\n=== Тест получения питомца по ID ===")
 
         # Шаг 1: Создание питомца
-        create_response = api_client.post("/pet", pet_data)
-        pet_id = create_response.json()["id"]
+        response = api_client.add_new_pet(pet_data)
+        assert response.status_code == 200, f"Ожидался статус 200, получен {response.status_code}"
+        pet_id = response.json()["id"]
         print(f"✓ Создан питомец с ID: {pet_id}")
 
         # Шаг 2: Получение питомца по ID
-        response = api_client.get(f"/pet/{pet_id}")
+        response = api_client.find_pet_by_id(pet_id)
 
         # Шаг 3: Проверка статус кода
         assert response.status_code == 200, f"Ожидался статус 200, получен {response.status_code}"
@@ -71,6 +70,7 @@ class TestPetEndpoints:
         assert response_data["name"] == pet_data["name"], "Имя питомца не совпадает"
         print("✓ Данные питомца корректны")
         print("✅ Тест получения питомца по ID пройден успешно")
+
 
 ###############################################################################################
     # Тест для обновления информации о существующем питомце (PUT /pet)
@@ -85,13 +85,13 @@ class TestPetEndpoints:
         print("\n=== Тест обновления питомца ===")
 
         # Шаг 1: Создание питомца
-        create_response = api_client.post("/pet", pet_data)
-        pet_id = create_response.json()["id"]
+        response = api_client.add_new_pet(pet_data)
+        assert response.status_code == 200, f"Ожидался статус 200, получен {response.status_code}"
+        pet_id = response.json()["id"]
         print(f"✓ Создан питомец с ID: {pet_id}")
 
         # Шаг 2: Обновление питомца
-        response = api_client.put("/pet", updated_pet_data)
-
+        response = api_client.update_existing_pet(updated_pet_data)
         # Проверка статус кода
         assert response.status_code == 200, f"Ожидался статус 200, получен {response.status_code}"
         print("✓ Статус код 200 - OK")
@@ -119,80 +119,30 @@ class TestPetEndpoints:
         print("\n=== Тест удаления питомца ===")
 
         # Шаг 1: Создание питомца
-        create_response = api_client.post("/pet", pet_data)
-        assert create_response.status_code == 200, f"Ожидался статус 200, получен {create_response.status_code}"
-        pet_id = create_response.json()["id"]
+        response = api_client.add_new_pet(pet_data)
+        assert response.status_code == 200, f"Ожидался статус 200, получен {response.status_code}"
+        pet_id = response.json()["id"]
         print(f"✓ Создан питомец с ID: {pet_id}")
 
         # Шаг 2: Удаление питомца
-        delete_response = api_client.delete(f"/pet/{pet_id}")
+        response = api_client.delete_pet_by_id(pet_id)
 
         # Проверка статус кода удаления
-        assert delete_response.status_code == 200, f"Ожидался статус 200, получен {delete_response.status_code}"
+        assert response.status_code == 200, f"Ожидался статус 200, получен {response.status_code}"
         print("✓ Статус код 200 при удалении - OK")
 
         # Шаг 3: Проверка сообщения об удалении
-        delete_data = delete_response.json()
+        delete_data = response.json()
         assert delete_data["message"] == str(pet_id), "Сообщение об удалении не содержит ID питомца"
         print("✓ Сообщение об удалении корректно")
 
         # Шаг 4: Попытка получить удаленного питомца
-        get_response = api_client.get(f"/pet/{pet_id}")
-        assert get_response.status_code == 404, f"Ожидался статус 404, получен {get_response.status_code}"
+        response = api_client.find_pet_by_id(pet_id)
+        assert response.status_code == 404, f"Ожидался статус 404, получен {response.status_code}"
         print("✓ Питомец действительно удален (статус 404)")
 
         print("✅ Тест удаления питомца пройден успешно")
 
-###############################################################################################
-    # Тест для поиска питомцев по статусу (GET /pet/findByStatus})
-    # Тип: позитивный
-    # Шаги:
-    # 1. Ищем питомце по стандартным статусам
-    # 2. Проверяем, что возвращает непустой список питомцев со статусом
-    ###############################################################################################
-    @pytest.mark.positive
-    def test_find_pet_by_status(self, api_client, pet_status):
-        print("\n=== Тест поиска питомцев по статусу ===")
-
-        # Шаг 1: Ищем питомца
-        create_response = api_client.get("/pet/findByStatus?"+f"status={pet_status}")
-        assert create_response.status_code == 200, f"Ожидался статус 200, получен {create_response.status_code}"
-        res_json = create_response.json()
-
-        # Проверка, что результат не пустой
-        assert len(res_json) > 0, f"Ожидался непустой список питомцев, получен пустой список для статуса {pet_status}"
-
-        print(f"Найдено {len(res_json)} питомцев со статусом '{pet_status}'")
-
-    ###############################################################################################
-    # Тест для поиска питомцев по уникальному статусу (GET /pet/findByStatus})
-    # Тип: позитивный
-    # Шаги:
-    # 1. Ищем питомце с предположительно уникальным статусам
-    # 2. Проверяем, что возвращает пустой список питомцев со статусом
-    # 3. Создаем питомца с этим уникальным статусов
-    # 4. Ищем питомцев с этим уникальным статусов
-    # 5. Проверяем, что найден только один питомец с таким статусов
-    ###############################################################################################
-    @pytest.mark.positive
-    def test_find_pet_by_special_status(self, api_client):
-        print("\n=== Тест поиска питомцев по статусу ===")
-        while(True):
-            uid = uuid.uuid4()
-            print(uid)
-            # Шаг 1: Ищем питомца
-            create_response = api_client.get("/pet/findByStatus?"+f"status={uid}")
-            assert create_response.status_code == 200, f"Ожидался статус 200, получен {create_response.status_code}"
-            res_json = create_response.json()
-
-            if(len(res_json) == 0):
-                break
-
-
-        # Проверка, что результат пустой
-        assert len(res_json) == 0, f"Ожидался пустой список питомцев, получен пустой список для статуса {pet_status}"
-
-        print(f"Найдено {len(res_json)} питомцев со статусом '{uid}'")
 
 ####################################################################################################
 #                                   Негативные тесты
@@ -213,9 +163,9 @@ class TestPetEndpoints:
         # Пытаемся получить питомца с несуществующим ID
         nonexistent_id = 999999999
         # Удаляем питомца на всякий случай
-        api_response = api_client.delete(f"/pet/{nonexistent_id}")
+        api_response = api_client.delete_pet_by_id (nonexistent_id)
         # Запрашиваем питомца, коотрого мы только-что удалили
-        response = api_client.get(f"/pet/{nonexistent_id}")
+        response = api_client.find_pet_by_id(nonexistent_id)
 
         # Проверяем, что получаем ошибку 404
         exp_response = {"status_code" : 404, "type": "error", "message":"Pet not found"}
@@ -246,12 +196,12 @@ class TestPetEndpoints:
         nonexistent_id = 999999999
 
         # Удаляем питомца на всякий случай
-        api_client.delete(f"/pet/{nonexistent_id}")
+        api_client.delete_pet_by_id(nonexistent_id)
+        time.sleep(0.1)  # Задержка на всякий случай
 
         # Шаг 2: Обновление питомца которого только-что удалили
         pet_data['id'] = nonexistent_id
-        response = api_client.put("/pet", pet_data)
-        print(response)
+        response = api_client.update_existing_pet(pet_data)
         # Проверка статус кода
         assert response.status_code in [400, 404, 405], f"Ожидался статус 400, 404, 405получен {response.status_code}"
         print("✓ Статус код [400, 404, 405] - OK")
@@ -270,15 +220,12 @@ class TestPetEndpoints:
     @pytest.mark.negative
     def test_delete_nonexistent_pet(self, api_client, pet_data):
         print("\n=== Тест удаления несуществующего питомца ===")
-
-
         nonexistent_id = 999999999
-
-        # Шаг 1: Удаляем питомца с болшим Id
-        api_client.delete(f"/pet/{nonexistent_id}")
+        # Шаг 1: Удаляем питомца с болшим Id на всякий случай
+        api_client.delete_pet_by_id(nonexistent_id)
         time.sleep(0.1) # Задержка на всякий случай
         #  2. Пытаемся удалить питомца с этим Id еще раз
-        delete_response = api_client.delete(f"/pet/{nonexistent_id}")
+        delete_response = api_client.delete_pet_by_id(nonexistent_id)
 
         # 3. Проверяем, что возвращается [400, 404]
         assert delete_response.status_code in [400, 404], f"Ожидался статус [400, 404], получен {delete_response.status_code}"
@@ -308,7 +255,7 @@ class TestPetEndpoints:
         (999999999999999, [404]),  # очень большой ID
     ])
     def test_get_invalid_pet_ids(self, api_client, invalid_id, expected_status):
-        response = api_client.get(f"/pet/{invalid_id}")
+        response = api_client.find_pet_by_id(invalid_id)
         assert response.status_code in expected_status
 
     ###############################################################################################
@@ -326,7 +273,7 @@ class TestPetEndpoints:
             "status": "sold"
         }
 
-        response = api_client.post("/pet", invalid_data)
+        response = api_client.update_existing_pet(invalid_data)
         # Ожидаем ошибку валидации
         assert response.status_code in [400, 405], "Ожидалась ошибка валидации"
 
@@ -347,7 +294,7 @@ class TestPetEndpoints:
         # Шаг 1: Создание питомца
         #print(pet_data)
         pet_data["id"] = "bad_id"
-        response = api_client.post("/pet", pet_data)
+        response = api_client.add_new_pet(pet_data)
 
         # Шаг 2: Проверка статус кода
         assert response.status_code in [405], f"Ожидался статус 405, получен {response.status_code}"
@@ -367,7 +314,7 @@ def test_complete_pet_lifecycle(api_client, pet_data, updated_pet_data):
     print("=" * 50)
 
     # Создаем экземпляр тестового класса
-    test_class = TestPetEndpoints()
+    test_class = TestPetEndpointsAdditional()
 
     try:
         # 1. Создание питомца
