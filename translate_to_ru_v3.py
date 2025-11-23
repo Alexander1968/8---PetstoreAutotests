@@ -13,7 +13,7 @@ def translate_with_bs4(html_content):
     soup = BeautifulSoup(html_content, 'html.parser')
 
     translation_dict = {
-        'test_report.html': 'ОтчетПоТестам.html',
+        'test_report.html': 'Отчет по тестам',
         'Report generated on': 'Отчет создан',
         'by': 'с помощью',
         'Environment': 'Окружение',
@@ -36,7 +36,6 @@ def translate_with_bs4(html_content):
         'Error': 'Ошибка',
         'Expected failures': 'Ожидаемые сбои',
         'Unexpected passes': 'Неожиданные прохождения',
-        'Reruns': 'Перезапуски',
         'Failed,': 'Не пройдено,',
         'Passed,': 'Пройдено,',
         'Skipped,': 'Пропущено,',

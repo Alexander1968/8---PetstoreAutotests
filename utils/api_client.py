@@ -44,6 +44,7 @@ class PetStoreAPI:
     #########################################################################
     # Endpoints - ориентированная инкапсуляция
     #########################################################################
+    # Относящиеся к pet
     # Получение питомца по ID
     def find_pet_by_id(self, pet_id):
         url = f"{self.base_url}/pet/{pet_id}"
@@ -66,4 +67,10 @@ class PetStoreAPI:
     def delete_pet_by_id(self, pet_id):
         url = f"{self.base_url}/pet/{pet_id}"
         response = self.session.delete(url)
+        return response
+
+    # Получение питомца по ID
+    def get_all_statuses(self):
+        url = f"{self.base_url}/store/inventory"
+        response = self.session.get(url)
         return response
