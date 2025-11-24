@@ -7,10 +7,13 @@
     <list default="true" id="fab8be44-e128-444b-a098-3dc1cc41110e" name="Changes" comment="Начальный работающий проект">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test_report.html" beforeDir="false" afterPath="$PROJECT_DIR$/test_report.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_pet_endpoints.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_pet_endpoints.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_pet_endpoints_additional.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_pet_endpoints_additional.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/translate_to_ru_v3.py" beforeDir="false" afterPath="$PROJECT_DIR$/translate_to_ru_v3.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/api_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/api_client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_report_russian_20251121_155719.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_report_russian_20251121_181916.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_report_russian_20251122_002445.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_report_russian_20251122_142447.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_report_russian_20251123_123730.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_report_russian_20251123_235654.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_report_russian_20251124_001735.html" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,60 +38,60 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python tests.Python tests for test_pet_endpoints.TestPetEndpoints.test_get_nonexistent_pet.test_update_nonexistence_pet.executor": "Run",
-    "Python tests.Python tests for test_pet_endpoints.TestPetEndpoints.test_get_nonexistent_pet.test_update_nonexistente_pet.executor": "Run",
-    "Python tests.Python tests for test_pet_endpoints_additional.TestPetEndpointsAdditional.test_create_pet_with_bad_id_as_string.test_complete_pet_lifecycle.executor": "Run",
-    "Python tests.Python tests for tests.test_pet_endpoints.TestPetEndpoints.test1_get_pet_by_id.executor": "Run",
-    "Python tests.Python tests for tests.test_pet_endpoints.TestPetEndpoints.test_complete_pet_lifecycle.executor": "Run",
-    "Python tests.Python tests for tests.test_pet_endpoints.TestPetEndpoints.test_create_pet.executor": "Run",
-    "Python tests.Python tests for tests.test_pet_endpoints.TestPetEndpoints.test_create_pet_invalid_id_as_string.executor": "Run",
-    "Python tests.Python tests for tests.test_pet_endpoints.TestPetEndpoints.test_create_pet_invalid_status.executor": "Run",
-    "Python tests.Python tests for tests.test_pet_endpoints.TestPetEndpoints.test_create_pet_with_bad_id_as_string.executor": "Run",
-    "Python tests.Python tests for tests.test_pet_endpoints.TestPetEndpoints.test_delete_nonexistent_pet.executor": "Run",
-    "Python tests.Python tests for tests.test_pet_endpoints.TestPetEndpoints.test_delete_pet.executor": "Run",
-    "Python tests.Python tests for tests.test_pet_endpoints.TestPetEndpoints.test_find_pet_by_special_status.executor": "Run",
-    "Python tests.Python tests for tests.test_pet_endpoints.TestPetEndpoints.test_find_pet_by_status.executor": "Run",
-    "Python tests.Python tests for tests.test_pet_endpoints.TestPetEndpoints.test_get_all_statuses.executor": "Run",
-    "Python tests.Python tests for tests.test_pet_endpoints.TestPetEndpoints.test_get_invalid_pet_ids.executor": "Run",
-    "Python tests.Python tests for tests.test_pet_endpoints.TestPetEndpoints.test_get_nonexistent_pet.executor": "Run",
-    "Python tests.Python tests for tests.test_pet_endpoints.TestPetEndpoints.test_get_pet_by_id.executor": "Run",
-    "Python tests.Python tests for tests.test_pet_endpoints.TestPetEndpoints.test_update_nonexistence_pet.executor": "Run",
-    "Python tests.Python tests for tests.test_pet_endpoints.TestPetEndpoints.test_update_pet.executor": "Run",
-    "Python tests.Python tests for tests.test_pet_endpoints.test_create_pet_invalid_data.executor": "Run",
-    "Python tests.Python tests for tests.test_pet_endpoints.test_create_pet_invalid_id_as_string.executor": "Run",
-    "Python tests.Python tests for tests.test_pet_endpoints_additional.TestPetEndpoints.test_create_pet.executor": "Run",
-    "Python tests.Python tests for tests.test_pet_endpoints_additional.TestPetEndpointsAdditional.test_complete_pet_lifecycle.executor": "Run",
-    "Python tests.Python tests for tests.test_pet_endpoints_additional.TestPetEndpointsAdditional.test_create_pet.executor": "Run",
-    "Python tests.Python tests for tests.test_pet_endpoints_additional.TestPetEndpointsAdditional.test_create_pet_invalid_id_as_string.executor": "Run",
-    "Python tests.Python tests for tests.test_pet_endpoints_additional.TestPetEndpointsAdditional.test_create_pet_with_bad_id_as_string.executor": "Run",
-    "Python tests.Python tests for tests.test_pet_endpoints_additional.TestPetEndpointsAdditional.test_delete_nonexistent_pet.executor": "Run",
-    "Python tests.Python tests for tests.test_pet_endpoints_additional.TestPetEndpointsAdditional.test_delete_pet.executor": "Run",
-    "Python tests.Python tests for tests.test_pet_endpoints_additional.TestPetEndpointsAdditional.test_get_all_statuses.executor": "Run",
-    "Python tests.Python tests for tests.test_pet_endpoints_additional.TestPetEndpointsAdditional.test_get_invalid_pet_ids.executor": "Run",
-    "Python tests.Python tests for tests.test_pet_endpoints_additional.TestPetEndpointsAdditional.test_get_nonexistent_pet.executor": "Run",
-    "Python tests.Python tests for tests.test_pet_endpoints_additional.TestPetEndpointsAdditional.test_get_pet_by_id.executor": "Run",
-    "Python tests.Python tests for tests.test_pet_endpoints_additional.TestPetEndpointsAdditional.test_update_nonexistence_pet.executor": "Run",
-    "Python tests.Python tests for tests.test_pet_endpoints_additional.TestPetEndpointsAdditional.test_update_pet.executor": "Run",
-    "Python tests.Python tests for tests.test_pet_endpoints_additional.test_complete_pet_lifecycle.executor": "Run",
-    "Python tests.Python tests in 8 - PetstoreAutotests.executor": "Run",
-    "Python tests.Python tests in test_pet_endpoints.py.executor": "Run",
-    "Python.check_structure.executor": "Run",
-    "Python.fake_tester.executor": "Run",
-    "Python.run_tests.executor": "Run",
-    "Python.translate_to_ru.executor": "Run",
-    "Python.translate_to_ru_v3.executor": "Run",
-    "Python.translate_to_ruv2.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "run.code.analysis.last.selected.profile": "aDefault"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python tests.Python tests for test_pet_endpoints.TestPetEndpoints.test_get_nonexistent_pet.test_update_nonexistence_pet.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_pet_endpoints.TestPetEndpoints.test_get_nonexistent_pet.test_update_nonexistente_pet.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_pet_endpoints_additional.TestPetEndpointsAdditional.test_create_pet_with_bad_id_as_string.test_complete_pet_lifecycle.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for tests.test_pet_endpoints.TestPetEndpoints.test1_get_pet_by_id.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for tests.test_pet_endpoints.TestPetEndpoints.test_complete_pet_lifecycle.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for tests.test_pet_endpoints.TestPetEndpoints.test_create_pet.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for tests.test_pet_endpoints.TestPetEndpoints.test_create_pet_invalid_id_as_string.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for tests.test_pet_endpoints.TestPetEndpoints.test_create_pet_invalid_status.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for tests.test_pet_endpoints.TestPetEndpoints.test_create_pet_with_bad_id_as_string.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for tests.test_pet_endpoints.TestPetEndpoints.test_delete_nonexistent_pet.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for tests.test_pet_endpoints.TestPetEndpoints.test_delete_pet.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for tests.test_pet_endpoints.TestPetEndpoints.test_find_pet_by_special_status.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for tests.test_pet_endpoints.TestPetEndpoints.test_find_pet_by_status.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for tests.test_pet_endpoints.TestPetEndpoints.test_get_all_statuses.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for tests.test_pet_endpoints.TestPetEndpoints.test_get_invalid_pet_ids.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for tests.test_pet_endpoints.TestPetEndpoints.test_get_nonexistent_pet.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for tests.test_pet_endpoints.TestPetEndpoints.test_get_pet_by_id.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for tests.test_pet_endpoints.TestPetEndpoints.test_update_nonexistence_pet.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for tests.test_pet_endpoints.TestPetEndpoints.test_update_pet.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for tests.test_pet_endpoints.test_create_pet_invalid_data.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for tests.test_pet_endpoints.test_create_pet_invalid_id_as_string.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for tests.test_pet_endpoints_additional.TestPetEndpoints.test_create_pet.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for tests.test_pet_endpoints_additional.TestPetEndpointsAdditional.test_complete_pet_lifecycle.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for tests.test_pet_endpoints_additional.TestPetEndpointsAdditional.test_create_pet.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for tests.test_pet_endpoints_additional.TestPetEndpointsAdditional.test_create_pet_invalid_id_as_string.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for tests.test_pet_endpoints_additional.TestPetEndpointsAdditional.test_create_pet_with_bad_id_as_string.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for tests.test_pet_endpoints_additional.TestPetEndpointsAdditional.test_delete_nonexistent_pet.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for tests.test_pet_endpoints_additional.TestPetEndpointsAdditional.test_delete_pet.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for tests.test_pet_endpoints_additional.TestPetEndpointsAdditional.test_get_all_statuses.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for tests.test_pet_endpoints_additional.TestPetEndpointsAdditional.test_get_invalid_pet_ids.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for tests.test_pet_endpoints_additional.TestPetEndpointsAdditional.test_get_nonexistent_pet.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for tests.test_pet_endpoints_additional.TestPetEndpointsAdditional.test_get_pet_by_id.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for tests.test_pet_endpoints_additional.TestPetEndpointsAdditional.test_update_nonexistence_pet.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for tests.test_pet_endpoints_additional.TestPetEndpointsAdditional.test_update_pet.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for tests.test_pet_endpoints_additional.test_complete_pet_lifecycle.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in 8 - PetstoreAutotests.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in test_pet_endpoints.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python.check_structure.executor&quot;: &quot;Run&quot;,
+    &quot;Python.fake_tester.executor&quot;: &quot;Run&quot;,
+    &quot;Python.run_tests.executor&quot;: &quot;Run&quot;,
+    &quot;Python.translate_to_ru.executor&quot;: &quot;Run&quot;,
+    &quot;Python.translate_to_ru_v3.executor&quot;: &quot;Run&quot;,
+    &quot;Python.translate_to_ruv2.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;aDefault&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\___LAN___\_QATestingCourse\_GraduationWorks\8 - PetstoreAutotests\tests" />
